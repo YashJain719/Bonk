@@ -37,7 +37,7 @@ const updateAcc = async (req, res) => {
   const existingAcc = await bonkModel.findOne({ publicKey: publicKey });
   console.log(existingAcc);
 
-  existingAcc.amountBonked = existingAcc.amountBoxnked + amountBonked;
+  existingAcc.amountBonked = existingAcc.amountBonked + amountBonked;
   existingAcc.noOfTimes = existingAcc.noOfTimes + noOfTimes;
   console.log("New Bonked \n" + existingAcc);
   try {
