@@ -50,8 +50,9 @@ const updateAcc = async (req, res) => {
 };
 
 const getAcc = async (req, res) => {
+  const mysort={noOfTimes:-1};
   try {
-    const acc = await bonkModel.find({});
+    const acc = await bonkModel.find({}).sort(mysort);
     res.status(200).json(acc);
   } catch (error) {
     console.log(error);
