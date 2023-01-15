@@ -5,11 +5,6 @@ const bonkModel = require("../models/bonk");
 const createAcc = async (req, res) => {
   const { publicKey, amountBonked } = req.body;
 
-  const newBonk = new bonk({
-    publicKey: publicKey,
-    amountBonked: amountBonked,
-    noOfTimes: 1,
-  });
 
   try {
     const existingAcc = await bonkModel.findOne({ publicKey: publicKey });
@@ -21,6 +16,11 @@ const createAcc = async (req, res) => {
       };
       res.status(400).json(message);
     } else {
+     const newBonk = new bonk({
+    publicKey: publicKey,
+    amountBonked: amountBonked,
+    noOfTimes: 1,
+  });
       await newBonk.save();
       res.status(201).json(newBonk);
     }
@@ -39,12 +39,6 @@ const updateAcc = async (req, res) => {
 
   existingAcc.amountBonked = existingAcc.amountBoxnked + amountBonked;
   existingAcc.noOfTimes = existingAcc.noOfTimes + noOfTimes;
-
-  //   const newBonk = new bonk({
-  //     publicKey: publicKey,
-  //     amountBonked: newAmountBonked,
-  //     noOfTimes: numberOfTimes,
-  //   });
   console.log("New Bonked \n" + existingAcc);
   try {
     await bonkModel.findByIdAndUpdate(id, existingAcc, { new: true });
