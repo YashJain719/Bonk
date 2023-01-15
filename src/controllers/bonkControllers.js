@@ -14,7 +14,7 @@ const createAcc = async (req, res) => {
         message: "Account already exist",
         id: existingAcc.id,
       };
-      res.status(400).json(message);
+      res.status(201).json(message);
     } else {
      const newBonk = new bonk({
     publicKey: publicKey,
