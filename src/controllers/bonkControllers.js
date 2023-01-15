@@ -3,7 +3,7 @@ const bonk = require("../models/bonk");
 const bonkModel = require("../models/bonk");
 
 const createAcc = async (req, res) => {
-  const { publicKey, amountBonked } = req.body;
+  const { publicKey, amountBonked,noOfTimes } = req.body;
 
 
   try {
@@ -19,7 +19,7 @@ const createAcc = async (req, res) => {
      const newBonk = new bonk({
     publicKey: publicKey,
     amountBonked: amountBonked,
-    noOfTimes: 1,
+    noOfTimes: noOfTimes,
   });
       await newBonk.save();
       res.status(201).json(newBonk);
