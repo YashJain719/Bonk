@@ -3,10 +3,13 @@ const {
   getAcc,
   createAcc,
   updateAcc,
+  getNftMint,
 } = require("../controllers/bonkControllers");
 const bonkRouter = express.Router();
 
 bonkRouter.get("/", getAcc);
+
+bonkRouter.get("/:publicKey", getNftMint);
 
 bonkRouter.post("/", createAcc);
 
