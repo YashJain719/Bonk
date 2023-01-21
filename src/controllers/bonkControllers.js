@@ -63,7 +63,7 @@ const getAcc = async (req, res) => {
 
 
 const getNftMint=async(req,res)=>{
-  const {publicKey}=req.body;
+  const { publicKey } = req.params;
   try{
   const existingAcc = await bonkModel.findOne({ publicKey: publicKey });
     res.status(200).json(existingAcc);
