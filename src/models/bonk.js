@@ -14,6 +14,9 @@ const BonkSchema = mongoose.Schema(
       type: Number,
       required: true,
     },
+     nftMint: {
+      type: String,
+    }
   },
   { timestamp: true }
 );
