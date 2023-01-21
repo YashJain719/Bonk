@@ -3,7 +3,7 @@ const bonk = require("../models/bonk");
 const bonkModel = require("../models/bonk");
 
 const createAcc = async (req, res) => {
-  const { publicKey, amountBonked,noOfTimes } = req.body;
+  const { publicKey, amountBonked,noOfTimes,nftMint } = req.body;
 
 
   try {
@@ -20,6 +20,7 @@ const createAcc = async (req, res) => {
     publicKey: publicKey,
     amountBonked: amountBonked,
     noOfTimes: noOfTimes,
+    nftMint:nftMint
   });
       await newBonk.save();
       res.status(201).json(newBonk);
@@ -60,8 +61,21 @@ const getAcc = async (req, res) => {
   }
 };
 
+
+const getNftMint=async(req,res)=>{
+  const {publicKey}=req.body;
+  try{
+  const existingAcc = await bonkModel.findOne({ publicKey: publicKey });
+    res.status(200).json(existingAcc);
+  }
+  catch(error){
+     res.status(500).json("something went wrong");
+  }
+}
+
 module.exports = {
   createAcc,
   updateAcc,
   getAcc,
+  getNftMint,
 };
